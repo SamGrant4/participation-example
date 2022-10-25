@@ -6,10 +6,44 @@
     <meta http-equiv = "X-UA-Compatible" content = "IE=edge"
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>10-21 Submission Page</title>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+        table {
+          text-align:center;
+          margin: 30px;
+        }
+    </style>
+    <script>
+        window.addEventListener("DOMContentLoaded", domLoaded);
+
+        function domLoaded(){
+            var firstName = document.getElementById("first")
+            var lastName = document.getElementById("last")
+            var emailName = document.getElementById("email")
+            firstName.innerHTML = localStorage.getItem("First Name");
+            lastName.innerHTML = localStorage.getItem("Last Name");
+            emailName.innerHTML = localStorage.getItem("Email");
+        }
+        
+    </script>
 </head>
 
 <body>
-    <h1> This is where the form took me... </h1>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        <tr>
+            <td id="first"> Data 1</th>
+            <td id="last"> Data 2</th>
+            <td id="email"> Data 3</td>
+        </tr>
+
+    </table>
 </body>
 
 </html>

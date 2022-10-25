@@ -18,6 +18,9 @@
             padding: 10px;
             margin: 10px;
         }
+        .hide {
+            display: none;
+        }
     </style>
     <script>
         window.addEventListener("DOMContentLoaded", domLoaded);
@@ -29,16 +32,57 @@
             const saveButton1 = document.getElementById('saveBtn1')
             const saveButton2 = document.getElementById('saveBtn2')
             const saveButton3 = document.getElementById('saveBtn3')
+            var text1 = document.getElementById("text1")
+            var text2 = document.getElementById("text2")
+            var text3 = document.getElementById("text3")
             
             saveButton1.addEventListener('click', () => {
-                localStorage.setItem("First Name", firstName.value);
+                if(firstName.value != ""){
+                    localStorage.setItem("First Name", firstName.value);
+                    text1.innerHTML = "First name saved!"
+                    text1.style = "background-color: green"
+                    text1.classList.remove('hide')
+                }
+                else{
+                    text1.innerHTML = "Error: You must add a value"
+                    text1.style = "background-color: red"
+                    text1.classList.remove('hide')
+                }
             });
             saveButton2.addEventListener('click', () => {
-                localStorage.setItem("Last Name", lastName.value);
+                if(lastName.value != ""){
+                    localStorage.setItem("Last Name", lastName.value);
+                    text2.innerHTML = "Last name saved!"
+                    text2.style = "background-color: green"
+                }
+                else{
+                    text2.innerHTML = "Error: You must add a value"
+                    text2.style = "background-color: red"
+                    text2.classList.remove('hide')
+                }
             });
             saveButton3.addEventListener('click', () => {
-                localStorage.setItem("Email", emailAdrs.value);
+                if(emailAdrs.value != ""){
+                    localStorage.setItem("Email", emailAdrs.value);
+                    text3.innerHTML = "Email saved!"
+                    text3.style = "background-color: green"
+                }
+                else{
+                    text3.innerHTML = "Error: You must add a value"
+                    text3.style = "background-color: red"
+                    text3.classList.remove('hide')
+                }
             });
+
+            function errorFun(){
+                // only add if it doesn't already exist
+                if(document.getElementById("error") == null){
+                    let newDiv = document.createElement('div');
+                    newDiv.id = 'error';
+                    newDiv.innerHTML = "Error: Must enter a value"
+                    document.body.appendChild(newDiv); 
+                }
+            }
         }
         
     </script>
@@ -52,20 +96,22 @@
         <form method="post" action="submission.html">
             <p>
                 <label for="first">First Name:</label>
-                <input type="text" name="first" id="first" value="First">
+                <input type="text" name="first" id="first">
                 <button type="button" id="saveBtn1">Save Data</button>
             </p>
-            
+            <p id="text1" class="hide">Text</p>
             <p>
                 <label for="last">Last Name:</label>
-                <input type="text" name="last" id="last" value="Last">
-                <input type="button" value="Save Data" id="saveBtn2">
+                <input type="text" name="last" id="last">
+                <button type="button" id="saveBtn2">Save Data</button>
             </p>
+            <p id="text2" class="hide">Text</p>
             <p>
                 <label for="email">Email Address:</label>
-                <input type="text" name="email" id="email" value="Email">
-                <input type="button" value="Save Data" id="saveBtn3">
+                <input type="text" name="email" id="email">
+                <button type="button" id="saveBtn3">Save Data</button>
             </p>
+            <p id="text3" class="hide">Text</p>
             <input type="submit" value="Submit Response"> 
             
          </form>

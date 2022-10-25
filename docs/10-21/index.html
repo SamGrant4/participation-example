@@ -38,10 +38,13 @@
             difficultyLevelWidget.value = localStorage.getItem("difficultyLevel");
         }
                 
-        document.getElementById("saveBtn").addEventListener("click", function() {
-            localStorage.setItem("playerName", playerNameWidget.value);
-            localStorage.setItem("difficultyLevel", difficultyLevelWidget.value);
-        });
+        var saveButton = document.getElementById("saveBtn")
+        if(saveButton){
+            saveButton.addEventListener("click", function() {
+                localStorage.setItem("playerName", playerNameWidget.value);
+                localStorage.setItem("difficultyLevel", difficultyLevelWidget.value);
+            });
+        }
     </script>
 </head>
 

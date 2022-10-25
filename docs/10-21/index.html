@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>10-21 Participation</title>
     <style>
+        body{
+            background-color: lightskyblue;
+        }
         legend{
             padding: 10px;
         }
@@ -33,62 +36,81 @@
             const saveButton2 = document.getElementById('saveBtn2')
             const saveButton3 = document.getElementById('saveBtn3')
             const submitButton = document.getElementById('submitBtn')
+            const form = document.getElementById('infoForm')
             var text1 = document.getElementById("text1")
             var text2 = document.getElementById("text2")
             var text3 = document.getElementById("text3");
+            var error1 = document.getElementById("error1")
+            var error2 = document.getElementById("error2")
+            var error3 = document.getElementById("error3");
             
 
             saveButton1.addEventListener('click', () => {
                 if(firstName.value != ""){
-                    localStorage.setItem("First Name", firstName.value);
+                    sessionStorage.setItem("First Name", firstName.value);
+                    error1.classList.add('hide')
                     text1.innerHTML = "First name saved!"
                     text1.style = "background-color: green"
                     text1.classList.remove('hide')
-                    
-                    
                 }
                 else{
-                    text1.innerHTML = "Error: You must add a value"
-                    text1.style = "background-color: red"
-                    text1.classList.remove('hide')
-                    
+                    error1.innerHTML = "Error: You must add a value"
+                    error1.style = "background-color: red"
+                    error1.classList.remove('hide')
+                    text1.classList.add('hide')
                 }
             });
             saveButton2.addEventListener('click', () => {
                 if(lastName.value != ""){
-                    localStorage.setItem("Last Name", lastName.value);
+                    sessionStorage.setItem("Last Name", lastName.value);
+                    error2.classList.add('hide')
                     text2.innerHTML = "Last name saved!"
                     text2.style = "background-color: green" 
+                    text2.classList.remove('hide')
                 }
                 else{
-                    text2.innerHTML = "Error: You must add a value"
-                    text2.style = "background-color: red"
-                    text2.classList.remove('hide')
+                    error2.innerHTML = "Error: You must add a value"
+                    error2.style = "background-color: red"
+                    error2.classList.remove('hide')
+                    text2.classList.add('hide')
                 }
             });
             saveButton3.addEventListener('click', () => {
                 if(emailAdrs.value != ""){
-                    localStorage.setItem("Email", emailAdrs.value);
+                    sessionStorage.setItem("Email", emailAdrs.value);
+                    error3.classList.add('hide')
                     text3.innerHTML = "Email saved!"
                     text3.style = "background-color: green"   
-                }
-                else{
-                    text3.innerHTML = "Error: You must add a value"
-                    text3.style = "background-color: red"
                     text3.classList.remove('hide')
                 }
-            });
-            function myValidation()
-            {
-                if(localStorage.getItem("First Name")){
-                    console.log("1")
-                    returnToPreviousPage();
-                    return false;
+                else{
+                    error3.innerHTML = "Error: You must add a value"
+                    error3.style = "background-color: red"
+                    error3.classList.remove('hide')
+                    text3.classList.add('hide')
                 }
-                console.log("2")
-                return true;
+            });
+            form.addEventListener('submit', (event) => {
+                if(sessionStorage.getItem("First Name") && sessionStorage.getItem("Last Name") && sessionStorage.getItem("Email")){
+                    console.log("Submitting")
+                }
+                else{
+                    event.preventDefault();
+                }
+            });
+        }
+        function clearError(x) {
+            if(x == 1){
+                error1.classList.add('hide')
+            }
+            if(x == 2){
+                error2.classList.add('hide')
+            }
+            if(x == 3){
+                error3.classList.add('hide')
             }
         }
+
         
     </script>
 </head>
@@ -98,25 +120,28 @@
     <fieldset>
         <legend>CPSC 332 10/21 Participation</legend>
       
-        <form method="post" action="submission.html">
+        <form method="post" action="submission.html" id="infoForm">
             <p>
                 <label for="first">First Name:</label>
-                <input type="text" name="first" id="first" required>
+                <input type="text" name="first" id="first" onfocus="clearError(1)">>
                 <button type="button" id="saveBtn1">Save Data</button>
             </p>
             <p id="text1" class="hide">Text</p>
+            <p id="error1" class="hide">Text</p>
             <p>
                 <label for="last">Last Name:</label>
-                <input type="text" name="last" id="last" required>
+                <input type="text" name="last" id="last" onfocus="clearError(2)">
                 <button type="button" id="saveBtn2">Save Data</button>
             </p>
             <p id="text2" class="hide">Text</p>
+            <p id="error2" class="hide">Text</p>
             <p>
                 <label for="email">Email Address:</label>
-                <input type="text" name="email" id="email" required>
+                <input type="text" name="email" id="email" onfocus="clearError(3)">
                 <button type="button" id="saveBtn3">Save Data</button>
             </p>
             <p id="text3" class="hide">Text</p>
+            <p id="error3" class="hide">Text</p>
             <input type="submit" id="submitBtn" value="Submit Response"> 
          </form>
       </fieldset>

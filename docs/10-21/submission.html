@@ -7,12 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>10-21 Submission Page</title>
     <style>
+        body{
+            background-color: lightskyblue;
+        }
+        h1{
+            text-align: center;
+        }
         table, th, td {
-          border:1px solid black;
+          border:2px solid black;
+          padding: 10px;
+          font-size:x-large;
         }
         table {
-          text-align:center;
-          margin: 30px;
+            text-align:center;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
     <script>
@@ -22,15 +31,16 @@
             var firstName = document.getElementById("first")
             var lastName = document.getElementById("last")
             var emailName = document.getElementById("email")
-            firstName.innerHTML = localStorage.getItem("First Name");
-            lastName.innerHTML = localStorage.getItem("Last Name");
-            emailName.innerHTML = localStorage.getItem("Email");
+            firstName.innerHTML = sessionStorage.getItem("First Name");
+            lastName.innerHTML = sessionStorage.getItem("Last Name");
+            emailName.innerHTML = sessionStorage.getItem("Email");
         }
         
     </script>
 </head>
 
 <body>
+    <h1> Form Data</h1>
     <table>
         <tr>
             <th>First Name</th>

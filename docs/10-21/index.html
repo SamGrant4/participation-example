@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-21 Participation</title>
+    <style>
+        legend{
+            padding: 10px;
+        }
+        fieldset{
+            border: 1px dashed red;
+            padding: 10px;
+            margin: 10px;
+        }
+        form{
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        /*
+        let firstName = document.getElementById("first");
+        
+        if (localStorage.getItem("first")) {                
+            firstName.value = localStorage.getItem("first");
+        }
+                
+        document.getElementById("saveBtn1").addEventListener("click", function() {
+            localStorage.setItem("first", firstName.value);
+        });*/
+        let playerNameWidget = document.getElementById("playerName");
+        let difficultyLevelWidget = document.getElementById("diffLevel");
+                
+        if (localStorage.getItem("playerName")) {                
+            playerNameWidget.value = localStorage.getItem("playerName");
+            difficultyLevelWidget.value = localStorage.getItem("difficultyLevel");
+        }
+                
+        document.getElementById("saveBtn").addEventListener("click", function() {
+            localStorage.setItem("playerName", playerNameWidget.value);
+            localStorage.setItem("difficultyLevel", difficultyLevelWidget.value);
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Settings</h1>
+    <label>Player Name: 
+        <input type="text" id="playerName" value="Player 1">
+    </label>
+    <label>Difficulty Level: 
+        <input type="number" min="1" max="3" id="diffLevel" value="1">
+    </label>
+    <input type="button" value="Save" id="saveBtn">
+    <!--
+    <fieldset>
+        <legend>CPSC 332 10/21 Participation</legend>
+      
+        <form method="post" action="submission.html">
+            <p>
+                <label for="first">First Name:</label>
+                <input type="text" name="first" id="first" value="First">
+                <button type="button" id="saveBtn1">Save Data</button>
+            </p>
+            
+            <p>
+                <label for="last">Last Name:</label>
+                <input type="text" name="last" id="last" value="Last">
+                <input type="button" value="Save Data" id="saveBtn2">
+            </p>
+            <p>
+                <label for="email">Email Address:</label>
+                <input type="text" name="email" id="email" value="Email">
+                <input type="button" value="Save Data" id="saveBtn3">
+            </p>
+            <input type="submit" value="Submit Response"> 
+            
+         </form>
+      </fieldset>-->
+
+
+    <p><a href="../index.html"> Back to Index </a> </p>
+</body>
+
+</html>
